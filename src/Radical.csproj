@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <Company>Undersoft</Company>
+    <Authors>Dariusz Hanc</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <Version>1.6.0</Version>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <AssemblyName>$(MSBuildProjectName.Replace("Radical", "RadicalFramework"))</AssemblyName>
+    <AssemblyVersion>1.6.0.1</AssemblyVersion>
+    <FileVersion>1.6.0.1</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Properties\nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="5.1.2" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.1.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.1.2" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
+    <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.7.0" />
+    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.10.0" />
+    <PackageReference Include="System.Threading.Channels" Version="4.7.1" />
+  </ItemGroup>
+
+</Project>
