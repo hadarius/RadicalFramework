@@ -622,7 +622,7 @@
 
         public int CompareTo(IUnique g)
         {
-            return (int)(Key - g.UniqueKey());
+            return (int)(Key - g.Key);
         }
 
         public bool Equals(ulong g)
@@ -647,7 +647,7 @@
 
         public bool Equals(IUnique g)
         {
-            return (Key == g.UniqueKey());
+            return (Key == g.Key);
         }
 
         public override String ToString()
@@ -780,7 +780,8 @@
         {
             ulong pchblockA,
                 pchblockB,
-                pchblockC;
+                pchblockC,
+                pchblockD;
             bool result;
 
             if (g.IsEmpty)
@@ -790,6 +791,7 @@
                 pchblockA = *((ulong*)&pbyte[0]);
                 pchblockB = *((ulong*)&pbyte[8]);
                 pchblockC = *((ulong*)&pbyte[16]);
+                pchblockD = *((ulong*)&pbyte[24]);
             }
 
             fixed (byte* pbyte = g.GetBytes())
@@ -797,7 +799,8 @@
                 result =
                     (pchblockA == *((ulong*)&pbyte[0]))
                     && (pchblockB == *((ulong*)&pbyte[8]))
-                    && (pchblockC == *((ulong*)&pbyte[16]));
+                    && (pchblockC == *((ulong*)&pbyte[16]))
+                    && (pchblockD == *((ulong*)&pbyte[24]));
             }
 
             return result;
@@ -805,17 +808,17 @@
 
         public bool Equals(BitVector32 other)
         {
-            throw new NotImplementedException();
+            return GetFlagsBits().Equals(other);
         }
 
         public bool Equals(DateTime other)
         {
-            throw new NotImplementedException();
+            return other.ToBinary() == Time;
         }
 
         public bool Equals(IUniqueStructure other)
         {
-            throw new NotImplementedException();
+            return EqualsContent(new Uscn(other.GetBytes()));
         }
 
         public void Dispose()
